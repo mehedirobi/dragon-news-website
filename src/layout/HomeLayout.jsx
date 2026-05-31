@@ -1,10 +1,25 @@
 import React from 'react';
+import { Outlet } from 'react-router';
+import Header from '../component/Header';
 
 const HomeLayout = () => {
     return (
         <div>
-            This is Home Layout
+            <header>
+        <Header></Header>
+            </header>
+        <main>
+            <section className="left">
+                
+        <Outlet></Outlet>
+
+            </section>
+            <section className="right">
+
+            </section>
+        </main>
         </div>
+
     );
 };
 
