@@ -3,6 +3,8 @@ import { Outlet } from 'react-router';
 import Header from '../component/Header';
 import LatestNews from '../component/LatestNews';
 import Navbar from '../component/Navbar';
+import LeftAside from '../component/LeftAside';
+import RightAside from '../component/RightAside';
 
 const HomeLayout = () => {
     return (
@@ -17,14 +19,17 @@ const HomeLayout = () => {
         </nav>
             </header>
         <main>
+            <aside>
+                <LeftAside></LeftAside>
+            </aside>
             <section className="left">
                 
         <Outlet></Outlet>
 
             </section>
-            <section className="right">
-
-            </section>
+            <aside>
+                <RightAside></RightAside>
+            </aside>
         </main>
         </div>
 

@@ -1,11 +1,11 @@
 import React from 'react';
 
-const LeftAside = () => {
+const Home = () => {
     return (
         <div>
-            left
+            Home
         </div>
     );
 };
 
-export default LeftAside;
+export default Home;

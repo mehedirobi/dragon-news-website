@@ -1,11 +1,11 @@
 import React from 'react';
 
-const LeftAside = () => {
+const RightAside = () => {
     return (
         <div>
-            left
+            Right aside
         </div>
     );
 };
 
-export default LeftAside;
+export default RightAside;
