@@ -3,7 +3,7 @@ import Categories from './Categories';
 
 const LeftAside = () => {
     return (
-        <div>
+        <div className="mr-5">
             <Suspense fallback={<span className="loading loading-dots loading-lg"></span>}>
                 <Categories></Categories>
             </Suspense>

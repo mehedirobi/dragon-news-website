@@ -1,22 +1,54 @@
 import { NavLink } from "react-router";
-import userImg from '../assets/user.png';
+import userImg from "../assets/user.png";
 
 const Navbar = () => {
-    return (
-        <div className="flex items-center justify-between">
-            <div></div>
-            <div className="flex items-center gap-5 text-accent font-semibold">
-                <NavLink to='/'>Home</NavLink>
-                <NavLink to='/about'>About</NavLink>
-                <NavLink to='/careers'>Careers</NavLink>
-                <NavLink to='/contact'>Contact</NavLink>
-            </div>
-            <div className="login-btn flex items-center gap-3">
-                <img className="w-10 rounded-full" src={userImg} alt="" />
-                <button className="btn btn-primary">Login</button>
-            </div>
+  const navLinks = [
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
+    { name: "Careers", path: "/careers" },
+    { name: "Contact", path: "/contact" },
+  ];
+
+  return (
+    <nav className="py-4">
+      <div className="flex items-center justify-between">
+        {/* Left Side */}
+        <div className="w-24"></div>
+
+        {/* Center Navigation */}
+        <div className="flex items-center gap-6">
+          {navLinks.map((link) => (
+            <NavLink
+              key={link.path}
+              to={link.path}
+              className={({ isActive }) =>
+                `font-medium transition-colors duration-200 ${
+                  isActive
+                    ? "text-primary"
+                    : "text-gray-600 hover:text-primary"
+                }`
+              }
+            >
+              {link.name}
+            </NavLink>
+          ))}
         </div>
-    );
+
+        {/* Right Side */}
+        <div className="flex items-center gap-3">
+          <img
+            src={userImg}
+            alt="User Profile"
+            className="w-10 h-10 rounded-full object-cover"
+          />
+
+          <button className="btn btn-primary px-6">
+            Login
+          </button>
+        </div>
+      </div>
+    </nav>
+  );
 };
 
 export default Navbar;
