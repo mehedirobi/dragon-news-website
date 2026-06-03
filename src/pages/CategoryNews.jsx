@@ -1,21 +1,36 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useLoaderData } from "react-router";
 
 const CategoryNews = () => {
   const { id } = useParams();
   const data = useLoaderData();
 
+  const [categoryNews, setCategoryNews] = useState([]);
+
   useEffect(() => {
-    if (!Array.isArray(data)) return;
+    if (id === "0") {
+      setCategoryNews(data);
+      return;
+    }
+      else if (id == "1") {
+        const filteredNews = data.filter(
+          (news) => (news.others.is_today_pick) == true
+        );
+        
+        setCategoryNews(filteredNews);
+        
+    
+    }
 
     const filteredNews = data.filter(
-      (news) => String(news.Category_id) === String(id)
+      (news) => (news.category_id) == id
     );
 
     console.log(filteredNews);
+    setCategoryNews(filteredNews);
   }, [data, id]);
 
-  return <div>Category News: {id}</div>;
+  return <div> Total: {categoryNews.length}</div>;
 };
 
 export default CategoryNews;
