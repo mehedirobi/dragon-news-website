@@ -8,7 +8,7 @@ const Categories = () => {
         <div>
             <p className="font-bold">All Categories: {categories.length}</p>
             <div className="grid grid-cols-1 gap-2 mt-5">
-                {categories.map(category => <NavLink className={"btn bg-base-100"} key={category.id} to={`/categories/${category.id}`}>
+                {categories.map(category => <NavLink className={"btn bg-base-100 hover:bg-base-300 text-accent font-semibold"} key={category.id} to={`/category/${category.id}`}>
                     {category.name}
                 </NavLink>)}
             </div>
