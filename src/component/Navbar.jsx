@@ -1,4 +1,4 @@
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 import userImg from "../assets/user.png";
 
 const Navbar = () => {
@@ -42,9 +42,9 @@ const Navbar = () => {
             className="w-10 h-10 rounded-full object-cover"
           />
 
-          <button className="btn btn-primary px-6">
+          <Link to="/login" className="btn btn-primary px-6">
             Login
-          </button>
+          </Link>
         </div>
       </div>
     </nav>
