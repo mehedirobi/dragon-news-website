@@ -1,8 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaGoogle, FaGithub } from "react-icons/fa";
+import { use } from "react";
+import { AuthContext } from "../provider/AuthProvider";
 
 const Register = () => {
+  const {createUser, setUser} = use(AuthContext);
   const handleRegister = (e) => {
     e.preventDefault();
 
@@ -18,6 +21,16 @@ const Register = () => {
       photoURL,
       email,
       password,
+    });
+    createUser(email, password).then(result => {
+      const user = result.user;
+      setUser(user);
+      console.log(user);
+    })
+    .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.error(errorCode, errorMessage);
     });
   };
 
@@ -45,6 +58,8 @@ const Register = () => {
               Full Name
             </label>
 
+            {/* Name Input */}
+
             <input
               type="text"
               name="name"
@@ -59,6 +74,8 @@ const Register = () => {
               Photo URL
             </label>
 
+            {/* Photo URL Input */}
+
             <input
               type="url"
               name="photoURL"
@@ -72,6 +89,7 @@ const Register = () => {
               Email Address
             </label>
 
+          {/* Email Input */}
             <input
               type="email"
               name="email"
@@ -85,6 +103,8 @@ const Register = () => {
             <label className="block mb-2 font-medium">
               Password
             </label>
+
+            {/* Password Input */}
 
             <input
               type="password"
@@ -111,7 +131,7 @@ const Register = () => {
           </div>
 
           <button
-            type="submit"
+            type="submit" onCanPlay={handleRegister}
             className="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg font-semibold transition"
           >
             Create Account
@@ -144,7 +164,7 @@ const Register = () => {
         <p className="text-center mt-6 text-gray-600">
           Already have an account?{" "}
           <Link
-            to="/login"
+            to="/auth/login"
             className="text-red-600 font-semibold hover:underline"
           >
             Sign In

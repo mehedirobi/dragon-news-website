@@ -7,6 +7,7 @@ import About from "../pages/About";
 import Contact from "../pages/Contact";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import AuthLayout from "../layout/AuthLayout";
 
 const router = createBrowserRouter([
   {
@@ -14,24 +15,38 @@ const router = createBrowserRouter([
     element: <HomeLayout></HomeLayout> ,
     children: [
       
-      { path: "category/:id", element: <CategoryNews></CategoryNews>,
-        
+      { path: "category/:id",
+        element: <CategoryNews></CategoryNews>,
         loader:  () => fetch('/news.json').then(res => res.json())
        },
+
        {
-        path: "about", element: <About></About>
+        path: "about", 
+        element: <About></About>
        },
+
        {
-        path: "contact", element: <Contact></Contact>
+        path: "contact", 
+        element: <Contact></Contact>
        }, 
-       {
-        path: "login", element: <Login></Login>
-       }, 
-       {
-        path: "register", element: <Register></Register>
-       }
     ],
   },
+
+
+  {
+    path:"/auth",
+    element: <AuthLayout></AuthLayout>,
+    children: [
+      {
+        path: "/auth/login",
+        element: <Login></Login>
+      }, 
+      {
+        path: "/auth/register",
+        element: <Register></Register>
+      }
+    ]
+  }
 ]);
 
 export default router;

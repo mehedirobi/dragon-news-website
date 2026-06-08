@@ -1,15 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaGoogle, FaGithub } from "react-icons/fa";
+import { use } from "react";
+import { AuthContext } from "../provider/AuthProvider";
 
 const Login = () => {
+  const {signIn} = use(AuthContext);
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    console.log({ email, password });
+    signIn(email, password)
+      .then((userCredential) => {
+        // Signed in
+        console.log(userCredential.user);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (
@@ -106,7 +116,7 @@ const Login = () => {
         <p className="text-center mt-6 text-gray-600">
           Don't have an account?{" "}
           <Link
-            to="/register"
+            to="/auth/register"
             className="text-red-600 font-semibold hover:underline"
           >
             Register
